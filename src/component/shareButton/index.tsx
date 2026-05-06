@@ -12,6 +12,7 @@ import { LazyDiv } from "../lazyDiv"
 import { useKakao } from "../store"
 
 const baseUrl = import.meta.env.BASE_URL
+const shareUrl = new URL(import.meta.env.BASE_URL, window.location.origin).href
 
 /**
  * 카카오톡으로 초대장을 공유할 수 있는 버튼 컴포넌트입니다.
@@ -46,32 +47,16 @@ export const ShareButton = () => {
                 baseUrl +
                 "/preview_image.png",
               link: {
-                mobileWebUrl:
-                  window.location.protocol +
-                  "//" +
-                  window.location.host +
-                  baseUrl,
-                webUrl:
-                  window.location.protocol +
-                  "//" +
-                  window.location.host +
-                  baseUrl,
+                mobileWebUrl: shareUrl,
+                webUrl: shareUrl,
               },
             },
             buttons: [
               {
                 title: "초대장 보기",
                 link: {
-                  mobileWebUrl:
-                    window.location.protocol +
-                    "//" +
-                    window.location.host +
-                    baseUrl,
-                  webUrl:
-                    window.location.protocol +
-                    "//" +
-                    window.location.host +
-                    baseUrl,
+                  mobileWebUrl: shareUrl,
+                  webUrl: shareUrl,
                 },
               },
             ],
