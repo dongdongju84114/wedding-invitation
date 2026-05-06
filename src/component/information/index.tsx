@@ -16,9 +16,13 @@ export const Information1 = () => {
       <div className="info-card">
         <div className="label">식사 안내</div>
         <div className="content">
-          식사시간: 12시 30분 ~ 14시 30분
+          식사는 예식 30분 전부터 이용 가능합니다.
           <br />
-          장소: 지하 1층 연회장
+          식사시간: 10시 30분 ~ 12시 30분
+          <br />
+          장소: 그레이스파티 인천 연회장
+          <br />
+          부평역사 5층
         </div>
       </div>
     </>
