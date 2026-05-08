@@ -44,6 +44,7 @@ export const Invitation = () => {
         <div className="content">기쁜 날 함께하시어</div>
         <div className="content">저희의 시작을 축복해 주세요.</div>
         <div className="break" />
+        <div className="break" />
 
         {/* 혼주 및 신랑 정보 */}
         <div className="name">
@@ -63,7 +64,8 @@ export const Invitation = () => {
         </div>
 
         <div className="break" />
-
+        <div className="break" />
+        
         <Button
           onClick={() => {
             contactModalState[1](true)

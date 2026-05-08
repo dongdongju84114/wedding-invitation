@@ -44,16 +44,16 @@ export const ShareButton = () => {
                 LOCATION_ADDRESS,
               imageUrl,
               link: {
-                mobileWebUrl: shareUrl,
-                webUrl: shareUrl,
+                mobileWebUrl: 'https://dongdongju84114.github.io/wedding-invitation/',
+                webUrl: 'https://dongdongju84114.github.io/wedding-invitation/',
               },
             },
             buttons: [
               {
                 title: "초대장 보기",
                 link: {
-                  mobileWebUrl: shareUrl,
-                  webUrl: shareUrl,
+                  mobileWebUrl: 'https://dongdongju84114.github.io/wedding-invitation/',
+                  webUrl: 'https://dongdongju84114.github.io/wedding-invitation/',
                 },
               },
               {

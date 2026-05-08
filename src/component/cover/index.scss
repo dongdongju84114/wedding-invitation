@@ -45,6 +45,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.7rem;
+    font-size: 1.3rem;
     .divider {
       background-color: var(--dark-color);
       width: 1px;
@@ -54,5 +55,6 @@
   .info {
     margin-bottom: 0.3rem;
     opacity: 0.7;
+    font-size: 1.2rem;
   }
 }
