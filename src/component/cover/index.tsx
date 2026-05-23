@@ -27,32 +27,42 @@ const DAY_OF_WEEK = [
 export const Cover = () => {
   return (
     <LazyDiv className="card cover">
-      {/* 상단 날짜 표시 */}
-      {/* <div className="wedding-date">
-        {WEDDING_DATE.format("YYYY")}
-        <div className="divider" />
-        {WEDDING_DATE.format("MM")}
-        <div className="divider" />
-        {WEDDING_DATE.format("DD")}
-      </div> */}
-      {/* 요일 표시 (영어) */}
-      {/* <div className="wedding-day-of-week">
-        {DAY_OF_WEEK[WEDDING_DATE.day()]}
-      </div> */}
+      <div className="cover-panel">
+        <div className="cover-label" aria-label="Our Wedding Day">
+          <span>Our Wedding{" "}</span>
+          <span>Day</span>
+        </div>
+        {/* 상단 날짜 표시 */}
+        <div className="wedding-date">
+          <span>{WEDDING_DATE.format("YYYY")}</span>
+          <div className="divider" />
+          <span>{WEDDING_DATE.format("MM")}</span>
+          <div className="divider" />
+          <span>{WEDDING_DATE.format("DD")}</span>
+        </div>
+        {/* 요일 표시 (영어) */}
+        <div className="wedding-day-of-week">
+          {DAY_OF_WEEK[WEDDING_DATE.day()]}
+        </div>
+      </div>
+
       {/* 커버 이미지 */}
       <div className="image-wrapper">
+        <div className="photo-tape" />
         <img src={COVER_IMAGE} alt="sample" />
       </div>
-      <div className="subtitle"></div>
-      {/* 이름 표시 */}
-      <div className="names">
-        {GROOM_FULLNAME}
-        <div className="divider" />
-        {BRIDE_FULLNAME}
+
+      <div className="cover-panel">
+        {/* 이름 표시 */}
+        <div className="names">
+          {GROOM_FULLNAME}
+          <div className="divider" />
+          {BRIDE_FULLNAME}
+        </div>
+        {/* 예식 정보 (포맷팅된 날짜 및 장소) */}
+        <div className="info">{WEDDING_DATE.format(WEDDING_DATE_FORMAT)}</div>
+        <div className="info">{LOCATION}</div>
       </div>
-      {/* 예식 정보 (포맷팅된 날짜 및 장소) */}
-      <div className="info">{WEDDING_DATE.format(WEDDING_DATE_FORMAT)}</div>
-      <div className="info">{LOCATION}</div>
     </LazyDiv>
   )
 }

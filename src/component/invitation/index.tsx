@@ -33,16 +33,10 @@ export const Invitation = () => {
         <div className="break" />
 
         {/* 초대 문구 */}
-        <div className="content">가을빛이 곱게 물드는 날</div>
+        <div className="content">서로의 가장 좋은 친구가 되어</div>
+        <div className="content">평생을 함께 걸어가려 합니다.</div>
         <div className="content">소중한 분들을 모시고</div>
-        <div className="content">저희 두 사람이 부부의 연을 맺고자 합니다.</div>
-        <div className="break" />
-        <div className="content">서로의 계절을 아껴주고,</div>
-        <div className="content">따뜻한 마음으로 함께 걸으며</div>
-        <div className="content">오래도록 사랑하며 살겠습니다.</div>
-        <div className="break" />
-        <div className="content">기쁜 날 함께하시어</div>
-        <div className="content">저희의 시작을 축복해 주세요.</div>
+        <div className="content">저희의 시작을 함께 나누고 싶습니다.</div>
         <div className="break" />
         <div className="break" />
 
@@ -67,6 +61,7 @@ export const Invitation = () => {
         <div className="break" />
         
         <Button
+          className="fixed-width-button"
           onClick={() => {
             contactModalState[1](true)
           }}

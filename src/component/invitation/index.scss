@@ -1,16 +1,24 @@
 .invitation {
+  background-color: var(--light-color);
+
   .content {
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
-    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.72;
+    opacity: 0.96;
   }
 
   .name {
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
-    font-size: 1.1rem;
+    width: 100%;
+    margin: 0.3rem auto;
+    padding: 0.3rem 0.75rem;
+    background-color: transparent;
+    font-size: 1.05rem;
+    line-height: 1.45;
     .relation {
       font-size: 0.75rem;
+      line-height: 1.4;
       opacity: 0.7;
 
       .relation-name {
@@ -23,41 +31,47 @@
 
 .contact-modal {
   width: 22rem;
+  max-width: calc(100vw - 1.5rem);
 
   .header {
-    .title-group {
-      text-align: center;
-      .title {
-        font-size: 1.2rem;
-        color: var(--theme-color);
-        padding: 0.5rem;
-      }
-      .subtitle {
-        font-size: 0.9rem;
-      }
+      .title-group {
+        text-align: center;
+        .title {
+          font-size: 1.125rem;
+          line-height: 1.35;
+          color: var(--theme-color);
+          padding: 0.5rem;
+        }
+        .subtitle {
+          color: var(--alt-color);
+          font-size: 0.875rem;
+          line-height: 1.45;
+        }
       padding-bottom: 1rem;
-      border-bottom: 1px solid var(--dark-grey-color);
+      border-bottom: 1px solid var(--light-grey-color);
     }
   }
 
   .content {
-    padding: 0.7rem;
+    padding: 0.75rem;
     padding-bottom: 1rem;
 
-    .contact-info {
-      padding: 1rem 0.7rem;
+      .contact-info {
+      padding: 1rem 0.75rem;
       display: grid;
       grid-template-columns: 8rem 7rem 1fr;
       row-gap: 0.5rem;
 
       .relation {
+        font-size: 0.875rem;
+        line-height: 1.4;
         opacity: 0.7;
       }
 
       .icon {
-        fill: var(--dark-color);
+        fill: var(--theme-color);
         margin: 0 0.5rem 0 0.5rem;
-        opacity: 0.7;
+        opacity: 0.82;
         width: 1rem;
         height: 1rem;
         &.flip {

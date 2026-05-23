@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import ArrowLeft from "../../icons/angle-left-sm.svg?react"
 import { LazyDiv } from "../lazyDiv"
-import { Button } from "../button"
-import { Modal } from "../modal"
 import { GALLERY_IMAGES } from "../../images"
 
 /**
@@ -38,17 +35,13 @@ type DragOption = {
   currentTranslateX: number
 }
 
-type ClickMove = "left" | "right" | null
-
 /**
  * 갤러리 컴포넌트입니다.
- * 사진 캐러셀 기능과 전체 사진 보기 모달 기능을 제공합니다.
  * 터치 및 마우스 드래그를 지원합니다.
  *
  * @returns {JSX.Element} 갤러리 섹션
  */
 export const Gallery = () => {
-  const modalState = useState(false)
   const carouselRef = useRef<HTMLDivElement>({} as HTMLDivElement)
 
   useEffect(() => {
@@ -95,11 +88,6 @@ export const Gallery = () => {
     srcIdx: 0,
     dstIdx: 0,
   })
-
-  const clickMoveRef = useRef<ClickMove>(null)
-  const setClickMove = (clickMove: ClickMove) => {
-    clickMoveRef.current = clickMove
-  }
 
   /**
    * 마우스/터치 다운 이벤트 처리
@@ -187,7 +175,6 @@ export const Gallery = () => {
     setMoveOption({ srcIdx, dstIdx })
 
     setTimeout(() => {
-      setClickMove(null)
       setStatus("stationary")
     }, 300)
   }, [])
@@ -241,23 +228,16 @@ export const Gallery = () => {
 
   const onMouseTouchUp = useCallback(() => {
     const status = statusRef.current
-    const clickMove = clickMoveRef.current
     const slide = slideRef.current
 
     if (status === "clicked") {
-      if (clickMove === "left") {
-        move(slide, (slide + CAROUSEL_ITEMS.length - 1) % CAROUSEL_ITEMS.length)
-      } else if (clickMove === "right") {
-        move(slide, (slide + 1) % CAROUSEL_ITEMS.length)
-      } else {
-        setStatus("stationary")
-      }
+      setStatus("stationary")
     } else if (status === "dragging") {
       dragEnd(slide, dragOptionRef.current, carouselRef.current.clientWidth)
     } else if (status === "clickCanceled") {
       setStatus("stationary")
     }
-  }, [dragEnd, move])
+  }, [dragEnd])
 
   useEffect(() => {
     const carouselElement = carouselRef.current
@@ -352,32 +332,6 @@ export const Gallery = () => {
               {["stationary", "clicked", "clickCanceled"].includes(status) &&
                 CAROUSEL_ITEMS[slide]}
             </div>
-
-            {/* 좌우 화살표 컨트롤 */}
-            <div className="carousel-control">
-              <div
-                className="control left"
-                onMouseDown={() => {
-                  if (statusRef.current === "stationary") setClickMove("left")
-                }}
-                onTouchStart={() => {
-                  if (statusRef.current === "stationary") setClickMove("left")
-                }}
-              >
-                <ArrowLeft className="arrow" />
-              </div>
-              <div
-                className="control right"
-                onMouseDown={() => {
-                  if (statusRef.current === "stationary") setClickMove("right")
-                }}
-                onTouchStart={() => {
-                  if (statusRef.current === "stationary") setClickMove("right")
-                }}
-              >
-                <ArrowLeft className="arrow right" />
-              </div>
-            </div>
           </div>
 
           {/* 하단 인디케이터 (점) */}
@@ -394,52 +348,7 @@ export const Gallery = () => {
           </div>
         </div>
 
-        <div className="break" />
-
-        <Button onClick={() => modalState[1](true)}>사진 전체보기</Button>
       </LazyDiv>
-
-      {/* 사진 전체보기 모달 */}
-      <Modal
-        modalState={modalState}
-        className="all-photo-modal"
-        closeOnClickBackground={true}
-      >
-        <div className="header">
-          <div className="title">사진 전체보기</div>
-        </div>
-
-        <div className="content">
-          <div className="photo-list">
-            {GALLERY_IMAGES.map((image, idx) => (
-              <img
-                key={idx}
-                src={image}
-                alt={`${idx}`}
-                draggable={false}
-                onClick={() => {
-                  if (statusRef.current === "stationary") {
-                    if (idx !== slideRef.current) {
-                      move(slideRef.current, idx)
-                    }
-                    modalState[1](false)
-                  }
-                }}
-              />
-            ))}
-          </div>
-          <div className="break" />
-        </div>
-        <div className="footer">
-          <Button
-            buttonStyle="style2"
-            className="bg-light-grey-color text-dark-color"
-            onClick={() => modalState[1](false)}
-          >
-            닫기
-          </Button>
-        </div>
-      </Modal>
     </>
   )
 }

@@ -3,20 +3,40 @@ button.button {
   background: none;
   position: relative;
   z-index: 3;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 
   &.button-style-1 {
-    background-color: var(--white-color);
-    border: solid 0.05rem var(--alt-color);
-    color: var(--alt-color);
-    border-radius: 0.3rem;
-    padding: 0.5rem 1rem;
+    background-color: var(--button-color);
+    border: solid 0.05rem rgba(47, 90, 66, 0.16);
+    color: var(--dark-color);
+    border-radius: 999px;
+    box-shadow: 0 0.25rem 0.75rem rgba(47, 90, 66, 0.12);
+    padding: 0.625rem 1rem;
+
+    &:hover {
+      background-color: var(--button-hover-color);
+      transform: translateY(-0.04rem);
+    }
   }
 
   &.button-style-2 {
-    background-color: var(--alt-color);
-    color: var(--white-color);
+    background-color: var(--button-hover-color);
+    color: var(--dark-color);
     border: none;
-    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    padding: 0.625rem 1rem;
+  }
+
+  &.fixed-width-button {
+    width: 320px;
+    max-width: 100%;
+    margin: 0 auto;
   }
 }

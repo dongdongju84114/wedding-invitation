@@ -1,5 +1,5 @@
-$gallery-width: 24rem;
-$gallery-height: 34rem;
+$gallery-width: 19rem;
+$gallery-height: 26rem;
 $transition-duration: 0.3s;
 
 @keyframes moving-right {
@@ -16,11 +16,18 @@ $transition-duration: 0.3s;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+
     .carousel {
       width: $gallery-width;
+      max-width: 100%;
       overflow: hidden;
       position: relative;
       z-index: 3;
+      background-color: rgba(255, 253, 243, 0.74);
+      border: 1px solid rgba(47, 90, 66, 0.18);
+      border-radius: 0.125rem;
+      box-shadow: inset 0 0 0 0.25rem rgba(255, 253, 243, 0.62);
 
       .carousel-list {
         display: flex;
@@ -50,45 +57,20 @@ $transition-duration: 0.3s;
           align-items: center;
           width: $gallery-width;
           height: $gallery-height;
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
+          padding: 0.5rem;
           img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-          }
-        }
-      }
+            width: 100%;
+            height: 100%;
+            border-radius: 0.125rem;
+            object-fit: cover;
+            object-position: center;
+            transition:
+              filter 0.25s ease,
+              transform 0.25s ease;
 
-      .carousel-control {
-        display: none;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .control {
-          height: 100%;
-          width: 30%;
-          display: flex;
-          align-items: center;
-          &.left {
-            display: none;
-            justify-content: flex-start;
-          }
-          &.right {
-            display: none;
-            justify-content: flex-end;
-          }
-
-          .arrow {
-            width: 2rem;
-            &.right {
-              transform: rotate(180deg);
+            &:hover {
+              filter: saturate(0.82);
+              transform: scale(1.015);
             }
           }
         }
@@ -101,15 +83,15 @@ $transition-duration: 0.3s;
       margin-top: 1rem;
 
       .indicator {
-        width: 1rem;
-        height: 1rem;
-        padding: 0.2rem;
+        width: 0.75rem;
+        height: 0.75rem;
+        padding: 0.25rem;
         &::before {
           content: "";
           display: block;
           width: 100%;
           height: 100%;
-          border-radius: 50%;
+          border-radius: 0.125rem;
           background-color: var(--dark-grey-color);
         }
         position: relative;
@@ -117,42 +99,10 @@ $transition-duration: 0.3s;
 
         &.active {
           &::before {
-            background-color: var(--dark-color);
+            background-color: var(--theme-color);
           }
         }
       }
     }
-  }
-}
-
-.all-photo-modal {
-  width: 22rem;
-  .header {
-    .title {
-      text-align: center;
-      font-size: 1.2rem;
-      color: var(--theme-color);
-      padding-bottom: 1rem;
-    }
-  }
-
-  .content {
-    padding: 0 0.7rem 0.7rem 0.7rem;
-    .photo-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 12rem;
-      gap: 0.5rem;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
-
-  .footer {
-    display: flex;
-    flex-direction: column;
   }
 }

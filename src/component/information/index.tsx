@@ -50,9 +50,11 @@ export const Information2 = () => {
         </div>
 
         <div className="break" />
+        <div className="break" />
 
+        <div className="break" />
         <Button
-          style={{ width: "100%" }}
+          className="fixed-width-button"
           onClick={() => {
             donationModalState[1](true)
             setIsGroom(true)
@@ -62,7 +64,7 @@ export const Information2 = () => {
         </Button>
         <div className="break" />
         <Button
-          style={{ width: "100%" }}
+          className="fixed-width-button"
           onClick={() => {
             donationModalState[1](true)
             setIsGroom(false)

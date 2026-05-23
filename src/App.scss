@@ -11,21 +11,32 @@
 @use "./component/shareButton";
 
 :root {
-  --theme-color: #ff6767;
-  --theme-bg-color: #ffe7e7;
-  --alt-color: #2e2e2e;
-  --alt-bg-color: #f4f0f0;
-  --dark-color: #282c34;
-  --dark-grey-color: #d2d2d2;
-  --light-grey-color: #eaeaea;
-  --light-color: #f9f9f9;
+  --theme-color: #343434;
+  --theme-bg-color: #e8f1ef;
+  --theme-soft-color: #e1ecd4;
+  --accent-color: #9cac78;
+  --alt-color: #2f5a42;
+  --alt-bg-color: #edf4e4;
+  --button-color: #b8c7a2;
+  --button-hover-color: #a8b98b;
+  --share-button-color: #98aa7a;
+  --dark-color: #163a2a;
+  --dark-grey-color: #c8d2c2;
+  --light-grey-color: #dde7d4;
+  --light-color: #fffdf2;
+  --cream-color: #f9f6e8;
   --white-color: #ffffff;
-  --red-color: #ff0000;
+  --red-color: #9e6973;
+  --stripe-color: #d7e1c0;
+  --shadow-color: rgba(37, 83, 72, 0.13);
+  --font-body: "Pretendard";
+  --font-display: "Cormorant Garamond", "MapoGoldenPier", serif;
+  --font-accent: "Allura", cursive;
 
-  font-family: "Pretendard";
+  font-family: var(--font-body);
   font-size: 20px;
   @media (max-width: 500px) {
-    font-size: 4vw;
+    font-size: 16px;
   }
 }
 
@@ -44,6 +55,7 @@ $colors: (
   dark-grey-color: var(--dark-grey-color),
   light-grey-color: var(--light-grey-color),
   light-color: var(--light-color),
+  cream-color: var(--cream-color),
   white-color: var(--white-color),
   red-color: var(--red-color),
 );
@@ -62,9 +74,9 @@ $colors: (
 
 @keyframes lazy-fade-in {
   from {
-    opacity: 1;
+    opacity: 0;
     z-index: 3;
-    transform: translateY(0);
+    transform: translateY(1rem);
   }
   to {
     opacity: 1;
@@ -74,8 +86,9 @@ $colors: (
 }
 
 button {
-  font-family: "Pretendard";
-  font-size: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.4;
   border: none;
   background-color: transparent;
   padding: 0;
@@ -85,7 +98,8 @@ body {
   margin: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: var(--theme-bg-color);
   &.modal-open {
     overflow-y: hidden;
   }
@@ -97,6 +111,7 @@ body {
 * {
   box-sizing: border-box;
   color: var(--dark-color);
+  letter-spacing: 0;
   user-select: none;
 }
 
@@ -108,10 +123,38 @@ body {
   justify-content: center;
   min-height: 100vh;
   min-width: 100vw;
+  position: relative;
+  isolation: isolate;
 
   .card-view {
-    width: 980px;
+    --panel-side: clamp(1.25rem, 5vw, 1.75rem);
+    --content-side: clamp(2.25rem, 8vw, 3rem);
+
+    width: 560px;
+    max-width: 100vw;
+    padding: 0.75rem 0 5rem;
+    position: relative;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        var(--stripe-color) 0 0.45rem,
+        var(--light-color) 0.45rem 0.9rem
+      );
+    box-shadow: 0 1rem 2.6rem var(--shadow-color);
     text-align: center;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 1rem;
+      right: var(--panel-side);
+      bottom: 5rem;
+      left: var(--panel-side);
+      background-color: var(--cream-color);
+      box-shadow: 0 0.5rem 1rem rgba(37, 83, 72, 0.06);
+      z-index: 0;
+    }
 
     @media (max-width: 980px) {
       width: 500px;
@@ -123,17 +166,61 @@ body {
 
     .card-group {
       position: relative;
-      @media (width > 980px) {
-        display: flex;
-        flex-direction: row;
-        // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-        margin: 10px;
-        background-color: var(--light-color);
+      z-index: 1;
 
+      .card {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 2rem var(--content-side) 2.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
         opacity: 0;
+
+        @media (max-width: 980px) {
+          margin: 0;
+          width: 100%;
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0.75rem;
+          left: calc(var(--content-side) + 0.75rem);
+          right: calc(var(--content-side) + 0.75rem);
+          height: 1px;
+          background-color: rgba(47, 90, 66, 0.12);
+          z-index: 1;
+        }
+
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0.625rem;
+          left: 50%;
+          width: 0.25rem;
+          height: 0.25rem;
+          background-color: var(--accent-color);
+          transform: translateX(-50%) rotate(45deg);
+          z-index: 1;
+        }
+
+        > * {
+          position: relative;
+          z-index: 2;
+        }
+
         &.lazy-active {
           animation-name: lazy-fade-in;
-          animation-duration: 3s;
+          animation-duration: 0.9s;
+          animation-timing-function: ease-out;
           opacity: 1;
         }
 
@@ -143,53 +230,29 @@ body {
           animation-duration: inherit !important;
         }
       }
-
-      .card {
-        background-color: var(--light-color);
-        padding: 1rem;
-        // border: 1px solid var(--light-grey-color);
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-
-        @media (max-width: 980px) {
-          // box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-          margin: 0;
-          width: inherit;
-
-          opacity: 0;
-          &.lazy-active {
-            animation-name: lazy-fade-in;
-            animation-duration: 3s;
-            opacity: 1;
-          }
-
-          @media print {
-            opacity: 1;
-            animation-name: inherit !important;
-            animation-duration: inherit !important;
-          }
-        }
-      }
       .card.cover {
         padding: 0;
+
+        &::before,
+        &::after {
+          display: none;
+        }
       }
     }
 
     .footer {
       position: relative;
       background-color: var(--light-color);
-      box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-      margin: 0.5rem;
+      border: 1px solid rgba(47, 90, 66, 0.14);
+      border-radius: 0.125rem;
+      box-shadow: 0 0.5rem 1.5rem var(--shadow-color);
       opacity: 0;
       margin: 0.5rem;
       padding: 1rem;
-      opacity: 0;
       &.lazy-active {
         animation-name: lazy-fade-in;
-        animation-duration: 3s;
+        animation-duration: 0.9s;
+        animation-timing-function: ease-out;
         opacity: 1;
       }
 
@@ -198,6 +261,22 @@ body {
         animation-name: inherit !important;
         animation-duration: inherit !important;
       }
+
+      &.share-button {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        z-index: 10;
+        width: min(560px, 100vw);
+        margin: 0;
+        padding: 0;
+        opacity: 1;
+        transform: translateX(-50%);
+
+        &.lazy-active {
+          animation-name: none;
+        }
+      }
     }
   }
 }
@@ -205,14 +284,29 @@ body {
 h2 {
   font-size: 1.5rem;
   color: var(--theme-color);
-  font-weight: normal;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
   &.english {
-    font-family: "Allura";
+    font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: 0;
+    margin-bottom: 0.75rem;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 2.4rem;
+      height: 0.125rem;
+      margin: 0.25rem auto 0;
+      background: var(--accent-color);
+      opacity: 0.72;
+    }
   }
 }
 
 div.break {
-  height: 1rem;
+  height: 0.5rem;
 }
