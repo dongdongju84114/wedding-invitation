@@ -37,8 +37,7 @@ export const Invitation = () => {
         <div className="content">평생을 함께 걸어가려 합니다.</div>
         <div className="content">소중한 분들을 모시고</div>
         <div className="content">저희의 시작을 함께 나누고 싶습니다.</div>
-        <div className="break" />
-        <div className="break" />
+        <div className="family-spacing" />
 
         {/* 혼주 및 신랑 정보 */}
         <div className="name">
@@ -57,9 +56,8 @@ export const Invitation = () => {
           {BRIDE_FULLNAME}
         </div>
 
-        <div className="break" />
-        <div className="break" />
-        
+        <div className="family-spacing" />
+
         <Button
           className="fixed-width-button"
           onClick={() => {
@@ -93,21 +91,29 @@ export const Invitation = () => {
                 <Fragment key={relation}>
                   <div className="relation">{relation}</div>
                   <div>{name}</div>
-                  <div>
+                  <div className="contact-actions">
                     {/* 전화 걸기 */}
-                    <PhoneIcon
-                      className="flip icon"
+                    <button
+                      type="button"
+                      className="contact-action"
+                      aria-label={`${name}에게 전화 걸기`}
                       onClick={() => {
                         window.open(`tel:${phone}`, "_self")
                       }}
-                    />
+                    >
+                      <PhoneIcon className="flip icon" />
+                    </button>
                     {/* 문자 보내기 */}
-                    <EnvelopeIcon
-                      className="icon"
+                    <button
+                      type="button"
+                      className="contact-action"
+                      aria-label={`${name}에게 문자 보내기`}
                       onClick={() => {
                         window.open(`sms:${phone}`, "_self")
                       }}
-                    />
+                    >
+                      <EnvelopeIcon className="icon" />
+                    </button>
                   </div>
                 </Fragment>
               ),
@@ -120,19 +126,27 @@ export const Invitation = () => {
                 <Fragment key={relation}>
                   <div className="relation">{relation}</div>
                   <div>{name}</div>
-                  <div>
-                    <PhoneIcon
-                      className="flip icon"
+                  <div className="contact-actions">
+                    <button
+                      type="button"
+                      className="contact-action"
+                      aria-label={`${name}에게 전화 걸기`}
                       onClick={() => {
                         window.open(`tel:${phone}`, "_self")
                       }}
-                    />
-                    <EnvelopeIcon
-                      className="icon"
+                    >
+                      <PhoneIcon className="flip icon" />
+                    </button>
+                    <button
+                      type="button"
+                      className="contact-action"
+                      aria-label={`${name}에게 문자 보내기`}
                       onClick={() => {
                         window.open(`sms:${phone}`, "_self")
                       }}
-                    />
+                    >
+                      <EnvelopeIcon className="icon" />
+                    </button>
                   </div>
                 </Fragment>
               ),

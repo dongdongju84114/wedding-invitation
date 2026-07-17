@@ -68,6 +68,41 @@
         padding: 0.5rem 0.75rem;
       }
     }
+
+    .account-delegation {
+      margin: -0.25rem 0 0.5rem;
+      padding: 0.75rem;
+      background-color: rgba(225, 236, 212, 0.38);
+      border-radius: 0.125rem;
+      text-align: center;
+
+      .delegation-names {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+
+        .delegation-name + .delegation-name::before {
+          content: "·";
+          margin-right: 0.5rem;
+          opacity: 0.5;
+        }
+
+        .relation {
+          opacity: 0.68;
+        }
+      }
+
+      .delegation-description {
+        margin-top: 0.5rem;
+        color: var(--alt-color);
+        font-size: 0.75rem;
+        line-height: 1.5;
+        opacity: 0.82;
+      }
+    }
   }
 
   .footer {

@@ -115,14 +115,6 @@
     background-color: rgba(255, 253, 243, 0.68);
     border: 1px solid rgba(47, 90, 66, 0.13);
     border-radius: 0.125rem;
-    transition:
-      background-color 0.2s ease,
-      transform 0.2s ease;
-
-    &:hover {
-      background-color: var(--alt-bg-color);
-      transform: translateX(0.08rem);
-    }
 
     .location-info-heading {
       display: grid;
@@ -267,9 +259,9 @@
 
     .keyword-list {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.75rem;
     }
 
     .keyword {

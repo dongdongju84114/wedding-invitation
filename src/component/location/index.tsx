@@ -7,17 +7,17 @@ import { LOCATION, LOCATION_ADDRESS } from "../../const"
 const busRoutes = [
   {
     color: "blue",
-    label: "파랑(간선)",
+    label: "간선",
     routes: "1, 2, 10, 11, 12, 23, 24-1, 30, 34, 35, 40, 43, 45, 111-2, 112, 721",
   },
   {
     color: "green",
-    label: "초록(지선)",
+    label: "지선",
     routes: "551, 552, 555, 556, 557, 558, 560, 561, 562, 565, 570, 571, 574, 579, 581, 585, 586",
   },
   {
     color: "red",
-    label: "빨강(광역)",
+    label: "광역",
     routes: "1400, 9500",
   },
   {

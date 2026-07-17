@@ -9,13 +9,19 @@
     opacity: 0.96;
   }
 
+  .family-spacing {
+    height: 1.5rem;
+    flex: 0 0 auto;
+  }
+
   .name {
     width: 100%;
-    margin: 0.3rem auto;
-    padding: 0.3rem 0.75rem;
+    margin: 0.05rem auto;
+    padding: 0.1rem 0.75rem;
     background-color: transparent;
     font-size: 1.05rem;
-    line-height: 1.45;
+    line-height: 1.35;
+
     .relation {
       font-size: 0.75rem;
       line-height: 1.4;
@@ -34,21 +40,23 @@
   max-width: calc(100vw - 1.5rem);
 
   .header {
-      .title-group {
-        text-align: center;
-        .title {
-          font-size: 1.125rem;
-          line-height: 1.35;
-          color: var(--theme-color);
-          padding: 0.5rem;
-        }
-        .subtitle {
-          color: var(--alt-color);
-          font-size: 0.875rem;
-          line-height: 1.45;
-        }
+    .title-group {
       padding-bottom: 1rem;
       border-bottom: 1px solid var(--light-grey-color);
+      text-align: center;
+
+      .title {
+        padding: 0.5rem;
+        color: var(--theme-color);
+        font-size: 1.125rem;
+        line-height: 1.35;
+      }
+
+      .subtitle {
+        color: var(--alt-color);
+        font-size: 0.875rem;
+        line-height: 1.45;
+      }
     }
   }
 
@@ -56,10 +64,11 @@
     padding: 0.75rem;
     padding-bottom: 1rem;
 
-      .contact-info {
+    .contact-info {
       padding: 1rem 0.75rem;
       display: grid;
-      grid-template-columns: 8rem 7rem 1fr;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) auto;
+      align-items: center;
       row-gap: 0.5rem;
 
       .relation {
@@ -68,14 +77,31 @@
         opacity: 0.7;
       }
 
-      .icon {
-        fill: var(--theme-color);
-        margin: 0 0.5rem 0 0.5rem;
-        opacity: 0.82;
-        width: 1rem;
-        height: 1rem;
-        &.flip {
-          transform: scaleX(-1);
+      .contact-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .contact-action {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          background-color: var(--alt-bg-color);
+          cursor: pointer;
+
+          .icon {
+            width: 1rem;
+            height: 1rem;
+            fill: var(--theme-color);
+            opacity: 0.82;
+
+            &.flip {
+              transform: scaleX(-1);
+            }
+          }
         }
       }
     }

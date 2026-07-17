@@ -114,6 +114,22 @@ export const Information2 = () => {
                 </Button>
               </div>
             ))}
+          {!isGroom && (
+            <div className="account-delegation">
+              <div className="delegation-names">
+                {BRIDE_INFO.filter(({ account }) => !account).map(
+                  ({ relation, name }) => (
+                    <span className="delegation-name" key={relation}>
+                      <span className="relation">{relation}</span> {name}
+                    </span>
+                  ),
+                )}
+              </div>
+              <div className="delegation-description">
+                전하실 마음도 위 신부 계좌로 함께 전달됩니다.
+              </div>
+            </div>
+          )}
         </div>
         <div className="footer">
           <Button
