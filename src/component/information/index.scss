@@ -108,6 +108,10 @@
   .footer {
     display: flex;
     flex-direction: column;
+
+    .button {
+      border-radius: 0;
+    }
   }
 }
 
