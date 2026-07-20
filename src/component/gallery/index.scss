@@ -64,14 +64,6 @@ $transition-duration: 0.3s;
             border-radius: 0.125rem;
             object-fit: cover;
             object-position: center;
-            transition:
-              filter 0.25s ease,
-              transform 0.25s ease;
-
-            &:hover {
-              filter: saturate(0.82);
-              transform: scale(1.015);
-            }
           }
         }
       }
