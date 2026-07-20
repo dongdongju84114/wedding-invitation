@@ -31,7 +31,7 @@ export const ShareButton = () => {
 
           const mapPageUrl = 'https://place.map.kakao.com/767048338';
           const imageUrl = new URL(
-            "preview_image.png?v=20260720",
+            "kakao_preview.png?v=20260720-square",
             shareUrl,
           ).href
 
