@@ -11,9 +11,21 @@
       property="og:title"
       content="<%= GROOM_FULLNAME %> ❤️ <%= BRIDE_FULLNAME %> 결혼합니다."
     />
-    <meta property="og:image" content="/preview_image.png" />
-    <meta property="og:url" content="%BASE_URL%/" />
+    <meta property="og:image" content="<%= HOMEPAGE %>preview_image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="996" />
+    <meta
+      property="og:image:alt"
+      content="<%= GROOM_FULLNAME %>과 <%= BRIDE_FULLNAME %>의 웨딩 초대장"
+    />
+    <meta property="og:url" content="<%= HOMEPAGE %>" />
     <meta property="og:description" content="<%= DESCRIPTION %>" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="<%= HOMEPAGE %>preview_image.png"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="/Pretendard-Regular.woff" as="font" crossorigin />

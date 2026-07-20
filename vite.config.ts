@@ -14,6 +14,9 @@ import {
 } from "./src/const"
 
 const distFolder = "build"
+const homepage = pkg.homepage.endsWith("/")
+  ? pkg.homepage
+  : `${pkg.homepage}/`
 
 let base = "/"
 
@@ -35,6 +38,7 @@ export default defineConfig({
           GROOM_FULLNAME,
           BRIDE_FULLNAME,
           DESCRIPTION: `${WEDDING_DATE.format(WEDDING_DATE_FORMAT)} ${LOCATION}`,
+          HOMEPAGE: homepage,
         },
       },
     }),
