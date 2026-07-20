@@ -211,6 +211,11 @@ export const Gallery = () => {
         // 일정 거리 이상 움직였을 때만 드래그로 간주
         if (Math.abs(xMove) > DRAG_SENSITIVITY) {
           setStatus("dragging")
+          dragging(
+            dragOptionRef.current,
+            e.targetTouches[0].clientX,
+            carouselRef.current.clientWidth,
+          )
         } else if (Math.abs(yMove) > DRAG_SENSITIVITY) {
           setStatus("clickCanceled")
         }
