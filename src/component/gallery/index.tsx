@@ -203,13 +203,16 @@ export const Gallery = () => {
       const status = statusRef.current
 
       if (status === "clicked") {
-        e.preventDefault()
         const xMove =
           e.targetTouches[0].clientX - dragOptionRef.current.startingClientX
         const yMove =
           e.targetTouches[0].clientY - dragOptionRef.current.startingClientY
         // 일정 거리 이상 움직였을 때만 드래그로 간주
-        if (Math.abs(xMove) > DRAG_SENSITIVITY) {
+        if (
+          Math.abs(xMove) > DRAG_SENSITIVITY &&
+          Math.abs(xMove) > Math.abs(yMove)
+        ) {
+          e.preventDefault()
           setStatus("dragging")
           dragging(
             dragOptionRef.current,
@@ -248,14 +251,18 @@ export const Gallery = () => {
     const carouselElement = carouselRef.current
 
     window.addEventListener("mousemove", onMouseMove)
-    carouselElement.addEventListener("touchmove", onTouchMove)
+    carouselElement.addEventListener("touchmove", onTouchMove, {
+      passive: false,
+    })
+    carouselElement.addEventListener("touchend", onMouseTouchUp)
+    carouselElement.addEventListener("touchcancel", onMouseTouchUp)
     window.addEventListener("mouseup", onMouseTouchUp)
-    window.addEventListener("touchend", onMouseTouchUp)
     return () => {
       window.removeEventListener("mousemove", onMouseMove)
       carouselElement.removeEventListener("touchmove", onTouchMove)
+      carouselElement.removeEventListener("touchend", onMouseTouchUp)
+      carouselElement.removeEventListener("touchcancel", onMouseTouchUp)
       window.removeEventListener("mouseup", onMouseTouchUp)
-      window.removeEventListener("touchend", onMouseTouchUp)
     }
   }, [onMouseMove, onTouchMove, onMouseTouchUp])
 
