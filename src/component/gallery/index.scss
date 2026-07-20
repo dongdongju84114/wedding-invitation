@@ -1,15 +1,5 @@
 $gallery-width: 19rem;
 $gallery-height: 26rem;
-$transition-duration: 0.3s;
-
-@keyframes moving-right {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc($gallery-width - 100%));
-  }
-}
 
 .gallery {
   .carousel-wrapper {
@@ -21,44 +11,36 @@ $transition-duration: 0.3s;
     .carousel {
       width: $gallery-width;
       max-width: 100%;
-      overflow: hidden;
+      overflow-x: auto;
       position: relative;
       z-index: 3;
       background-color: rgba(255, 253, 243, 0.74);
       border: 1px solid rgba(47, 90, 66, 0.18);
       border-radius: 0.125rem;
       box-shadow: inset 0 0 0 0.25rem rgba(255, 253, 243, 0.62);
-      touch-action: pan-y;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .carousel-list {
         display: flex;
-        width: fit-content;
-        justify-content: center;
-
-        &.transitioning {
-          transition: $transition-duration ease-out;
-        }
-
-        &.moving-left {
-          animation-name: moving-right;
-          animation-duration: $transition-duration;
-          animation-fill-mode: forwards;
-          animation-direction: reverse;
-        }
-
-        &.moving-right {
-          animation-name: moving-right;
-          animation-duration: $transition-duration;
-          animation-fill-mode: forwards;
-        }
+        width: 100%;
 
         .carousel-item {
+          flex: 0 0 100%;
           display: flex;
           justify-content: center;
           align-items: center;
-          width: $gallery-width;
+          width: 100%;
           height: $gallery-height;
           padding: 0.5rem;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+
           img {
             width: 100%;
             height: 100%;
