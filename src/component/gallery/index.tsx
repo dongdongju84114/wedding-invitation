@@ -59,12 +59,56 @@ export const Gallery = () => {
     })
   }, [])
 
+  /**
+   * 이전/다음 버튼 클릭 시 인접한 이미지로 이동합니다.
+   */
+  const onNavigationClick = useCallback((offset: -1 | 1) => {
+    const carousel = carouselRef.current
+    if (!carousel || carousel.clientWidth === 0) return
+
+    const currentSlide = Math.round(
+      carousel.scrollLeft / carousel.clientWidth,
+    )
+    const nextSlide = Math.min(
+      CAROUSEL_ITEMS.length - 1,
+      Math.max(0, currentSlide + offset),
+    )
+
+    carousel.scrollTo({
+      left: carousel.clientWidth * nextSlide,
+      behavior: "smooth",
+    })
+  }, [])
+
   return (
     <LazyDiv className="card gallery">
       <h2 className="english">Gallery</h2>
       <div className="carousel-wrapper">
-        <div className="carousel" ref={carouselRef} onScroll={onScroll}>
-          <div className="carousel-list">{CAROUSEL_ITEMS}</div>
+        <div className="carousel-stage">
+          <div className="carousel" ref={carouselRef} onScroll={onScroll}>
+            <div className="carousel-list">{CAROUSEL_ITEMS}</div>
+          </div>
+
+          <div className="carousel-navigation">
+            <button
+              type="button"
+              className="carousel-navigation-button previous"
+              aria-label="이전 사진 보기"
+              disabled={slide === 0}
+              onClick={() => onNavigationClick(-1)}
+            >
+              <span aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="carousel-navigation-button next"
+              aria-label="다음 사진 보기"
+              disabled={slide === CAROUSEL_ITEMS.length - 1}
+              onClick={() => onNavigationClick(1)}
+            >
+              <span aria-hidden="true" />
+            </button>
+          </div>
         </div>
 
         {/* 하단 인디케이터 (점) */}
